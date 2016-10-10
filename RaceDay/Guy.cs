@@ -16,6 +16,15 @@ namespace RaceDay
         public RadioButton MyRadioButton;
         public Label MyLabel;
 
+        public Guy(string name, int cash, RadioButton myRadioButton, Label myLabel) {
+            this.Name = name;
+            this.Cash = cash;
+            MyBet = null;
+            this.MyRadioButton = myRadioButton;
+            this.MyLabel = myLabel;
+        }
+
+        public void UpdateLabels() { }
         public void ClearBet() { }
         public bool PlaceBet(int Amount, int Dog) { }
 
