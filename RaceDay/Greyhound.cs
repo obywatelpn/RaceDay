@@ -15,7 +15,7 @@ namespace RaceDay
         public int Location = 0;
         public Random MyRandom;
 
-        public bool Run() { }
+        public bool Run() { return false; }
         public void TakeStartingPosition() { }
     }
 }

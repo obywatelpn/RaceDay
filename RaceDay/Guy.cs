@@ -19,14 +19,27 @@ namespace RaceDay
         public Guy(string name, int cash, RadioButton myRadioButton, Label myLabel) {
             this.Name = name;
             this.Cash = cash;
-            MyBet = null;
+            this.MyBet = null;
             this.MyRadioButton = myRadioButton;
             this.MyLabel = myLabel;
         }
 
-        public void UpdateLabels() { }
+        public void UpdateLabels()
+        {
+            MyRadioButton.Text = Name + " ma " + Cash + " zł";
+            if (MyBet== null)
+            {
+                MyLabel.Text = Name + " nie zawarł jeszcze zakładu";
+            }
+            else
+            {
+                //kiedy guy zawarł zakład
+            }
+            MyRadioButton.Refresh();
+            MyLabel.Refresh();
+        }
         public void ClearBet() { }
-        public bool PlaceBet(int Amount, int Dog) { }
+        public bool PlaceBet(int Amount, int Dog) { return true; }
 
         public void Collect(int Winner) { }
     }

@@ -14,18 +14,28 @@ namespace RaceDay
     {
         private List<Guy> guyList = new List<Guy>();
         private List<Greyhound> greyhoundList = new List<Greyhound>();
-        
+
         public Form1()
         {
-            guyList.Add(new Guy());
-            greyhoundList.Add(new Greyhound());
-
             InitializeComponent();
+
+            guyList.Add(new Guy("Janek", 50, radioButton1, label1));
+            guyList.Add(new Guy("Bartek", 75, radioButton2, label2));
+            guyList.Add(new Guy("Arek", 45, radioButton3, label3));
+            greyhoundList.Add(new Greyhound());
+            RegenetateForm();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
+        private void RegenetateForm()
+        {
+            foreach (Guy person in guyList)
+            {
+                person.UpdateLabels();
+            }
         }
+    }
 }

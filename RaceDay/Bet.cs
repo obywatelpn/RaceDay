@@ -12,7 +12,7 @@ namespace RaceDay
         public int Dog;
         public Guy Bettor;
 
-        public string GetDescription() { }
-        public int PayOut(int Winner) { }
+        public string GetDescription() { return "string"; }
+        public int PayOut(int Winner) { return 0; }
     }
 }
