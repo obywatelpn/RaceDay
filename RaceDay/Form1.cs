@@ -22,7 +22,12 @@ namespace RaceDay
             guyList.Add(new Guy("Janek", 50, radioButton1, label1));
             guyList.Add(new Guy("Bartek", 75, radioButton2, label2));
             guyList.Add(new Guy("Arek", 45, radioButton3, label3));
-            greyhoundList.Add(new Greyhound());
+
+            greyhoundList.Add(new Greyhound(pictureBox1));
+            greyhoundList.Add(new Greyhound(pictureBox2));
+            greyhoundList.Add(new Greyhound(pictureBox3));
+            greyhoundList.Add(new Greyhound(pictureBox4));
+
             RegenetateForm();
         }
 
