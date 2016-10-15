@@ -28,6 +28,7 @@ namespace RaceDay
             greyhoundList.Add(new Greyhound(pictureBox3));
             greyhoundList.Add(new Greyhound(pictureBox4));
 
+            label5.Text = numericUpDown1.Minimum.ToString();
             RegenetateForm();
         }
 
@@ -41,6 +42,48 @@ namespace RaceDay
             {
                 person.UpdateLabels();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (var guy in guyList)
+            {
+                if (guy.MyRadioButton.Checked)
+                {
+                    guy.PlaceBet((int)numericUpDown1.Value, (int)numericUpDown2.Value);
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var counter = 0;
+            foreach (var guy in guyList)
+            {
+                if (guy.MyBet!=null)
+                {
+                    counter++;
+                }
+            }
+            if (counter==3)
+            {
+
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            label7.Text = radioButton1.Text;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            label7.Text = radioButton2.Text;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            label7.Text = radioButton3.Text;
         }
     }
 }

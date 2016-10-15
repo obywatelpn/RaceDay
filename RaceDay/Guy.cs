@@ -31,16 +31,26 @@ namespace RaceDay
             {
                 MyLabel.Text = Name + " nie zawarł jeszcze zakładu";
             }
-            else
-            {
-                //kiedy guy zawarł zakład
-            }
             MyRadioButton.Refresh();
             MyLabel.Refresh();
         }
-        public void ClearBet() { }
-        public bool PlaceBet(int Amount, int Dog) { return true; }
+        public void ClearBet()
+        {
+            MyBet = null;
+        }
+        public bool PlaceBet(int Amount, int Dog)
+        {
+            MyBet = new Bet(Amount, Dog, this);
+            if (Cash>=Amount)
+            {
+                return true;
+            }
+            return false;
+        }
 
-        public void Collect(int Winner) { }
+        public void Collect(int Winner)
+        {
+            MyBet.PayOut(Winner);
+        }
     }
 }
