@@ -23,6 +23,7 @@ namespace RaceDay
             RacetrackLength = 560;
             MyRandom = new Random();
             this.MyPictureBox = pictureBox;
+            TakeStartingPosition();
             
         }
 
@@ -39,7 +40,7 @@ namespace RaceDay
         {
             Location = 0;
             distance = StartingPosition;
-            ActualizeCurrentDogPosition();
+            //ActualizeCurrentDogPosition();
         }
         public void ActualizeCurrentDogPosition()
         {

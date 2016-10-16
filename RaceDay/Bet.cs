@@ -23,7 +23,7 @@ namespace RaceDay
         {
             if (Amount>0)
             {
-                return Bettor.Name + " postawił " + Amount + "na psa numer" + Dog;
+                return Bettor.Name + " postawił " + Amount + " na psa numer " + Dog;
             }
             return Bettor.Name+" nie postawił zakładu";
         }

@@ -28,7 +28,8 @@ namespace RaceDay
             greyhoundList.Add(new Greyhound(pictureBox3));
             greyhoundList.Add(new Greyhound(pictureBox4));
 
-            label5.Text = numericUpDown1.Minimum.ToString();
+            label5.Text = numericUpDown1.Minimum.ToString() + " zł";
+            button2.Enabled = true;
             RegenetateForm();
         }
 
@@ -51,6 +52,7 @@ namespace RaceDay
                 if (guy.MyRadioButton.Checked)
                 {
                     guy.PlaceBet((int)numericUpDown1.Value, (int)numericUpDown2.Value);
+                    guy.UpdateLabels();
                 }
             }
         }
@@ -58,6 +60,7 @@ namespace RaceDay
         private void button2_Click(object sender, EventArgs e)
         {
             var counter = 0;
+            button2.Enabled = false;
             foreach (var guy in guyList)
             {
                 if (guy.MyBet!=null)
@@ -65,9 +68,19 @@ namespace RaceDay
                     counter++;
                 }
             }
-            if (counter==3)
+            if (counter == 3)
             {
-
+                while
+                foreach (var dog in greyhoundList)
+                {
+                    dog.Run();
+                    dog.ActualizeCurrentDogPosition();
+                }
+            }
+            else
+            {
+                //informacja że jeszcze nie można zacząć wyścigu bo nie wszyscy obstawili
+                button2.Enabled = true;
             }
         }
 

@@ -31,6 +31,10 @@ namespace RaceDay
             {
                 MyLabel.Text = Name + " nie zawarł jeszcze zakładu";
             }
+            else
+            {
+                MyLabel.Text = MyBet.GetDescription();
+            }
             MyRadioButton.Refresh();
             MyLabel.Refresh();
         }
