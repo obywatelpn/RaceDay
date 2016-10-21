@@ -60,7 +60,7 @@ namespace RaceDay
         private void button2_Click(object sender, EventArgs e)
         {
             var counter = 0;
-            button2.Enabled = false;
+            
             foreach (var guy in guyList)
             {
                 if (guy.MyBet!=null)
@@ -70,17 +70,23 @@ namespace RaceDay
             }
             if (counter == 3)
             {
-                while
-                foreach (var dog in greyhoundList)
+                button2.Enabled = false;
+                button1.Enabled = false;
+                var winner = false;
+                while (winner == false)
                 {
-                    dog.Run();
-                    dog.ActualizeCurrentDogPosition();
+                    foreach (var dog in greyhoundList)
+                    {
+                        winner = dog.Run();
+                        dog.ActualizeCurrentDogPosition();
+                    }
                 }
             }
             else
             {
                 //informacja że jeszcze nie można zacząć wyścigu bo nie wszyscy obstawili
                 button2.Enabled = true;
+                button1.Enabled = false;
             }
         }
 
