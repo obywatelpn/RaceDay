@@ -19,8 +19,8 @@ namespace RaceDay
 
         public Greyhound(PictureBox pictureBox )
         {
-            StartingPosition = 0;
-            RacetrackLength = 560;
+            StartingPosition = 10;
+            RacetrackLength = 60;
             MyRandom = new Random();
             this.MyPictureBox = pictureBox;
             TakeStartingPosition();
@@ -29,7 +29,7 @@ namespace RaceDay
 
         public bool Run()
         {
-            Location += MyRandom.Next(1, 4);
+            ActualizeCurrentDogPosition(MyRandom.Next(1, 4));
             if (Location >= RacetrackLength)
             {
                 return true;
@@ -42,10 +42,10 @@ namespace RaceDay
             distance = StartingPosition;
             //ActualizeCurrentDogPosition();
         }
-        public void ActualizeCurrentDogPosition()
+        private void ActualizeCurrentDogPosition(int distance)
         {
             Point p = MyPictureBox.Location;
-            p.X = distance;
+            p.X += distance;
             MyPictureBox.Location = p;
         }
     }

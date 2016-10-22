@@ -23,10 +23,10 @@ namespace RaceDay
             guyList.Add(new Guy("Bartek", 75, radioButton2, label2));
             guyList.Add(new Guy("Arek", 45, radioButton3, label3));
 
-            greyhoundList.Add(new Greyhound(pictureBox1));
             greyhoundList.Add(new Greyhound(pictureBox2));
             greyhoundList.Add(new Greyhound(pictureBox3));
             greyhoundList.Add(new Greyhound(pictureBox4));
+            greyhoundList.Add(new Greyhound(pictureBox5));
 
             label5.Text = numericUpDown1.Minimum.ToString() + " zł";
             button2.Enabled = true;
@@ -73,12 +73,23 @@ namespace RaceDay
                 button2.Enabled = false;
                 button1.Enabled = false;
                 var winner = false;
+                int dogNumber = 0;
                 while (winner == false)
                 {
+                    dogNumber = 0;
                     foreach (var dog in greyhoundList)
                     {
                         winner = dog.Run();
-                        dog.ActualizeCurrentDogPosition();
+                        dogNumber++;
+                        
+                        //dog.ActualizeCurrentDogPosition();
+                    }
+                }
+                if (winner)
+                {
+                    foreach (var guy in guyList)
+                    {
+                        guy.Collect(dogNumber);
                     }
                 }
             }
@@ -86,7 +97,7 @@ namespace RaceDay
             {
                 //informacja że jeszcze nie można zacząć wyścigu bo nie wszyscy obstawili
                 button2.Enabled = true;
-                button1.Enabled = false;
+                button1.Enabled = true;
             }
         }
 
