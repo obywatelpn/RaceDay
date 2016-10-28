@@ -54,7 +54,7 @@ namespace RaceDay
 
         public void Collect(int Winner)
         {
-            MyBet.PayOut(Winner);
+            this.Cash += MyBet.PayOut(Winner);
         }
     }
 }

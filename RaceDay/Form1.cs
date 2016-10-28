@@ -29,7 +29,6 @@ namespace RaceDay
             greyhoundList.Add(new Greyhound(pictureBox5));
 
             label5.Text = numericUpDown1.Minimum.ToString() + " zł";
-            button2.Enabled = true;
             RegenetateForm();
         }
 
@@ -70,8 +69,7 @@ namespace RaceDay
             }
             if (counter == 3)
             {
-                button2.Enabled = false;
-                button1.Enabled = false;
+                DisableButtonsAndRadio(true);
                 var winner = false;
                 int dogNumber = 0;
                 while (winner == false)
@@ -87,17 +85,20 @@ namespace RaceDay
                 }
                 if (winner)
                 {
+                    MessageBox.Show("Zwyciezca: Pies numer "+dogNumber);
                     foreach (var guy in guyList)
                     {
                         guy.Collect(dogNumber);
+                        //guy.MyBet.Dog
                     }
+                    RegenetateForm();
+                    DisableButtonsAndRadio(false);
                 }
             }
             else
             {
-                //informacja że jeszcze nie można zacząć wyścigu bo nie wszyscy obstawili
-                button2.Enabled = true;
-                button1.Enabled = true;
+                MessageBox.Show("Nie wszystkie zakłady zostały zawarte");
+                DisableButtonsAndRadio(false);
             }
         }
 
@@ -114,6 +115,20 @@ namespace RaceDay
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             label7.Text = radioButton3.Text;
+        }
+        private void DisableButtonsAndRadio(bool disable)
+        {
+            switch (disable)
+            {
+                case (true):
+                    button2.Enabled = false;
+                    button1.Enabled = false;
+                    break;
+                case (false):
+                    button2.Enabled = true;
+                    button1.Enabled = true;
+                    break;
+            }
         }
     }
 }
