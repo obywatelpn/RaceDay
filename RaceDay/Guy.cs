@@ -42,19 +42,19 @@ namespace RaceDay
         {
             MyBet = null;
         }
-        public bool PlaceBet(int Amount, int Dog)
+        public bool PlaceBet(int amount, int dog)
         {
-            MyBet = new Bet(Amount, Dog, this);
-            if (Cash>=Amount)
+            MyBet = new Bet(amount, dog, this);
+            if (Cash>=amount)
             {
                 return true;
             }
             return false;
         }
 
-        public void Collect(int Winner)
+        public void Collect(int winner)
         {
-            this.Cash += MyBet.PayOut(Winner);
+            this.Cash += MyBet.PayOut(winner);
         }
     }
 }

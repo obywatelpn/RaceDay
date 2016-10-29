@@ -12,21 +12,24 @@ namespace RaceDay
 {
     public partial class Form1 : Form
     {
-        private List<Guy> guyList = new List<Guy>();
-        private List<Greyhound> greyhoundList = new List<Greyhound>();
+        private readonly List<Greyhound> _greyhoundList = new List<Greyhound>();
+        private static DialogResult _dialogResult;
+        private const string DogWinns = "Zwyciezca: Pies numer ";
+
+        internal List<Guy> GuyList { get; } = new List<Guy>();
 
         public Form1()
         {
             InitializeComponent();
 
-            guyList.Add(new Guy("Janek", 50, radioButton1, label1));
-            guyList.Add(new Guy("Bartek", 75, radioButton2, label2));
-            guyList.Add(new Guy("Arek", 45, radioButton3, label3));
+            GuyList.Add(new Guy("Janek", 50, radioButton1, label1));
+            GuyList.Add(new Guy("Bartek", 75, radioButton2, label2));
+            GuyList.Add(new Guy("Arek", 45, radioButton3, label3));
 
-            greyhoundList.Add(new Greyhound(pictureBox2));
-            greyhoundList.Add(new Greyhound(pictureBox3));
-            greyhoundList.Add(new Greyhound(pictureBox4));
-            greyhoundList.Add(new Greyhound(pictureBox5));
+            _greyhoundList.Add(new Greyhound(pictureBox2));
+            _greyhoundList.Add(new Greyhound(pictureBox3));
+            _greyhoundList.Add(new Greyhound(pictureBox4));
+            _greyhoundList.Add(new Greyhound(pictureBox5));
 
             label5.Text = numericUpDown1.Minimum.ToString() + " zł";
             RegenetateForm();
@@ -38,7 +41,7 @@ namespace RaceDay
         }
         private void RegenetateForm()
         {
-            foreach (Guy person in guyList)
+            foreach (var person in GuyList)
             {
                 person.UpdateLabels();
             }
@@ -46,7 +49,7 @@ namespace RaceDay
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (var guy in guyList)
+            foreach (var guy in GuyList)
             {
                 if (guy.MyRadioButton.Checked)
                 {
@@ -60,7 +63,7 @@ namespace RaceDay
         {
             var counter = 0;
 
-            foreach (var guy in guyList)
+            foreach (var guy in GuyList)
             {
                 if (guy.MyBet != null)
                 {
@@ -71,28 +74,26 @@ namespace RaceDay
             {
                 DisableButtonsAndRadio(true);
                 var winner = false;
-                int dogNumber = 0;
                 while (winner == false)
                 {
-                    dogNumber = 0;
-                    foreach (var dog in greyhoundList)
+                    var dogNumber = 0;
+                    foreach (var dog in _greyhoundList)
                     {
                         winner = dog.Run();
                         dogNumber++;
                         if (winner)
                         {
-                            MessageBox.Show("Zwyciezca: Pies numer " + dogNumber);
-                            foreach (var guy in guyList)
+                            _dialogResult = MessageBox.Show(DogWinns + dogNumber);
+                            foreach (var guy in GuyList)
                             {
                                 guy.Collect(dogNumber);
-                                //guy.MyBet.Dog
                             }
                             DisableButtonsAndRadio(false);
                             RestartRace();
                             break;
                         }
                     }
-                    System.Threading.Thread.Sleep(5);
+                    System.Threading.Thread.Sleep(3);
                 }
             }
             else
@@ -139,11 +140,11 @@ namespace RaceDay
         }
         private void RestartRace()
         {
-            foreach (Greyhound dog in greyhoundList)
+            foreach (Greyhound dog in _greyhoundList)
             {
                 dog.TakeStartingPosition();
             }
-            foreach (var guy in guyList)
+            foreach (var guy in GuyList)
             {
                 guy.MyBet = null;
             }

@@ -27,9 +27,9 @@ namespace RaceDay
             }
             return Bettor.Name+" nie postawił zakładu";
         }
-        public int PayOut(int Winner)
+        public int PayOut(int winner)
         {
-            if (Winner==Dog)
+            if (winner==Dog)
             {
                 return Amount; 
             }
