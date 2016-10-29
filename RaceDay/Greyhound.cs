@@ -30,6 +30,7 @@ namespace RaceDay
         public bool Run()
         {
             Location = ActualizeCurrentDogPosition(MyRandom.Next(1, 4));
+            MyPictureBox.Refresh();
             if (Location >= RacetrackLength)
             {
                 return true;
@@ -38,9 +39,9 @@ namespace RaceDay
         }
         public void TakeStartingPosition()
         {
-            Location = 0;
-            distance = StartingPosition;
-            //ActualizeCurrentDogPosition();
+            Point p = MyPictureBox.Location;
+            p.X = StartingPosition;
+            MyPictureBox.Location = p;
         }
         private int ActualizeCurrentDogPosition(int distance)
         {

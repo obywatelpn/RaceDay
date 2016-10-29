@@ -59,10 +59,10 @@ namespace RaceDay
         private void button2_Click(object sender, EventArgs e)
         {
             var counter = 0;
-            
+
             foreach (var guy in guyList)
             {
-                if (guy.MyBet!=null)
+                if (guy.MyBet != null)
                 {
                     counter++;
                 }
@@ -79,20 +79,20 @@ namespace RaceDay
                     {
                         winner = dog.Run();
                         dogNumber++;
-                        
-                        //dog.ActualizeCurrentDogPosition();
+                        if (winner)
+                        {
+                            MessageBox.Show("Zwyciezca: Pies numer " + dogNumber);
+                            foreach (var guy in guyList)
+                            {
+                                guy.Collect(dogNumber);
+                                //guy.MyBet.Dog
+                            }
+                            DisableButtonsAndRadio(false);
+                            RestartRace();
+                            break;
+                        }
                     }
-                }
-                if (winner)
-                {
-                    MessageBox.Show("Zwyciezca: Pies numer "+dogNumber);
-                    foreach (var guy in guyList)
-                    {
-                        guy.Collect(dogNumber);
-                        //guy.MyBet.Dog
-                    }
-                    RegenetateForm();
-                    DisableButtonsAndRadio(false);
+                    System.Threading.Thread.Sleep(5);
                 }
             }
             else
@@ -123,12 +123,31 @@ namespace RaceDay
                 case (true):
                     button2.Enabled = false;
                     button1.Enabled = false;
+                    radioButton1.Enabled = false;
+                    radioButton2.Enabled = false;
+                    radioButton3.Enabled = false;
                     break;
                 case (false):
                     button2.Enabled = true;
                     button1.Enabled = true;
+                    radioButton1.Enabled = true;
+                    radioButton2.Enabled = true;
+                    radioButton3.Enabled = true;
+                    radioButton1.Checked = true;
                     break;
             }
+        }
+        private void RestartRace()
+        {
+            foreach (Greyhound dog in greyhoundList)
+            {
+                dog.TakeStartingPosition();
+            }
+            foreach (var guy in guyList)
+            {
+                guy.MyBet = null;
+            }
+            RegenetateForm();
         }
     }
 }
